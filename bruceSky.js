@@ -43,7 +43,7 @@ function loadBanners() {
   fs.writeFileSync(BANNER_DATA_FILE, JSON.stringify(filteredData, null, 2), 'utf8');
   
   // Report which banners were located
-  console.log('Banners found:');
+  console.log(`Found ${filteredData.length} banners:`);
   filteredData.forEach((entry)=>{
     console.log(`⭕ ${entry.path}`);
   })
