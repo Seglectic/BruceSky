@@ -41,11 +41,17 @@ function loadBanners() {
 
   // Save updated banner data to disk
   fs.writeFileSync(BANNER_DATA_FILE, JSON.stringify(filteredData, null, 2), 'utf8');
-  console.log('Banner data updated:', filteredData);
+  
+  // Report which banners were located
+  console.log('Banners found:');
+  filteredData.forEach((entry)=>{
+    console.log(`⭕ ${entry.path}`);
+  })
 
   return filteredData;
 }
 
+// Does the hard work of actually sending the banner data to bsky after cropping the image
 async function updateBanner(bannerEntry) {
   const report = [];
   const currentTime = new Date().toISOString(); // Get the current time in ISO format
@@ -166,8 +172,11 @@ async function bruceSky(scheduleType) {
       console.error('Invalid schedule type. Use "hourly", "daily", "weekly", "biweekly", or "monthly".');
       return;
   }
-
-  console.log(`BruceSky is now running on a ${scheduleType} schedule.`);
+  if(scheduleType==='hourly'){
+    console.log(`BruceSky is now running on an hourly schedule.`);
+  }else{
+    console.log(`BruceSky is now running on a ${scheduleType} schedule.`);
+  }
 }
 
 // Fetch the next banner to be used
