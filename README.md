@@ -46,3 +46,4 @@ BLUESKY_APP_PASSWORD= your-app-password
 node bruceSky.js
 ```
 - *By default, BruceSky uses the schedule defined in your .env file. It'll run continuously.*
+- *Named after our favorite green Banner*
